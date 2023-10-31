@@ -3,6 +3,7 @@
 }
 
 .page{
+    max-width: 1300px;
     padding: 50px;
     display: flex;
     flex-direction: column;

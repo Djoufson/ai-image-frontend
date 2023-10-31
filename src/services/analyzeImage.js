@@ -16,9 +16,9 @@ Sample response
         "height": 473
     }
 }
- */
+*/
 
-const analyzeImage = (image_url) => {
+const analyzeImage = async (image_url) => {
     var myHeaders = new Headers();
     myHeaders.append(apiKeyHeader, apiKey);
     myHeaders.append("Content-Type", "application/json");
@@ -35,12 +35,9 @@ const analyzeImage = (image_url) => {
     };
 
     console.log("Analyze started ...");
-    return fetch(url, requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            return result.captionResult.text;
-        });
+    const response = await fetch(url, requestOptions);
+    const content = await response.json();
+    return content.captionResult.text;
 }
 
 export default analyzeImage;
