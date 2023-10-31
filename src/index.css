@@ -1,0 +1,11 @@
+* {
+    font-family: sans-serif;
+}
+
+.page{
+    padding: 50px;
+}
+
+.buttons{
+    display: flex;
+}
