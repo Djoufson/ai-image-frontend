@@ -4,6 +4,7 @@
 
 .page{
     max-width: 1300px;
+    margin: auto;
     padding: 50px;
     display: flex;
     flex-direction: column;
