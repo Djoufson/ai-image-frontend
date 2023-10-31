@@ -1,36 +1,33 @@
 import React, { useState } from 'react';
-// import analyzeImage from './services/analyzeImage';
+import analyzeImage from './services/analyzeImage';
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [imageSrc, setImageSrc] = useState("");
   const [imageDescription, setImageDescription] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const clearInput = () => {
     setInputValue("")
   }
 
   const generate = (prompt) => {
-    setIsLoading(true);
     console.log("Generating from prompt: " + prompt);
     clearInput();
-    setIsLoading(false);
   }
 
   const analyze = (image_url) => {
-    setIsLoading(true);
-
     try {
-      // const response = analyzeImage(image_url);
-      setImageSrc(image_url);
-      // setImageDescription(response.captionResult.text);
+      analyzeImage(image_url)
+        .then(description => {
+          console.log(description)
+          setImageSrc(image_url);
+          setImageDescription(description);
+      });
     } catch (error) {
       console.log('error', error);
     }
 
     clearInput();
-    setIsLoading(false);
   }
 
   return (
@@ -46,10 +43,8 @@ const App = () => {
         <button onClick={ _ => analyze(inputValue) }>Analyze</button>
       </div>
 
-      {isLoading && (<div>Loading ...</div>)}
-
       <img src={imageSrc} alt={imageDescription} />
-      <div>{imageDescription}</div>
+      <div className="image-description">{imageDescription}</div>
     </div>
   )
 }

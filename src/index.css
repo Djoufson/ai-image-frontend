@@ -4,8 +4,21 @@
 
 .page{
     padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .buttons{
     display: flex;
+    gap: 10px;
+}
+
+button, input{
+    padding: 10px;
+    font-size: 12px;
+}
+
+.image-description{
+    text-transform: capitalize;
 }
