@@ -18,6 +18,11 @@ Sample response
 }
 */
 
+/**
+ * Analyzes the given image URL and returns the caption text.
+ * @param {string} image_url - The URL of the image to be analyzed.
+ * @returns {Promise<string>} The caption text of the analyzed image.
+ */
 const analyzeImage = async (image_url) => {
     var myHeaders = new Headers();
     myHeaders.append(apiKeyHeader, apiKey);

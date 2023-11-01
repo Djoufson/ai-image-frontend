@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import analyzeImage from './services/analyzeImage';
+import generateImage from './services/generateImage';
 
 const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -13,7 +14,7 @@ const App = () => {
     setInputValue("")
   }
 
-  const generate = (prompt) => {
+  const generate = async (prompt) => {
     if(
       prompt == null ||
       prompt === undefined ||
@@ -24,6 +25,9 @@ const App = () => {
 
     console.log("Generating from prompt: " + prompt);
     setIsLoading(true);
+    const generatedImageUrl = await generateImage(prompt);
+    setImageSrc(generatedImageUrl);
+    setImageDescription(prompt);
     clearInput();
     setIsLoading(false);
   }
@@ -61,7 +65,7 @@ const App = () => {
           type="text"
           required />
         <div className='buttons'>
-          <button onClick={ _ => generate(inputValue) }>Generate</button>
+          <button onClick={ async _ => await generate(inputValue) }>Generate</button>
           <button onClick={ async _ => await analyze(inputValue) }>Analyze</button>
         </div>
       </form>
